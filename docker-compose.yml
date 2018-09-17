@@ -1,0 +1,40 @@
+version: '3'
+
+volumes:
+  postgres:
+
+services:
+  app:
+    container_name: drftp-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: drftp
+    links:
+      - db
+    environment:
+      - DJANGO_SETTINGS_MODULE=settings
+      - LOCAL_SETTINGS_MODULE=settings.docker
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB_NAME=drftp
+      - POSTGRES_USER=boi
+      - POSTGRES_PASSWORD=pw
+      - DEBUG=True
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/var/app/drftp
+    ports:
+      - 8000:8000
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: boi
+      POSTGRES_PASSWORD: pw
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
