@@ -15,9 +15,9 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=tp.settings
       - LOCAL_SETTINGS_MODULE=settings.docker
-      - POSTGRES_HOST=postgres
+      - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
-      - POSTGRES_DB_NAME=drftp
+      - POSTGRES_DB_NAME=boi
       - POSTGRES_USER=boi
       - POSTGRES_PASSWORD=pw
       - DEBUG=True
@@ -27,6 +27,8 @@ services:
       - .:/var/app/drftp
     ports:
       - 8000:8000
+    networks:
+      app:
 
   db:
     image: postgres
@@ -35,6 +37,11 @@ services:
       POSTGRES_USER: boi
       POSTGRES_PASSWORD: pw
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    networks:
+      app:
+
+networks:
+  app:
