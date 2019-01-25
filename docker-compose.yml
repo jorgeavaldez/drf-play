@@ -13,8 +13,8 @@ services:
     links:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=settings
-      - LOCAL_SETTINGS_MODULE=settings.docker
+      - DJANGO_SETTINGS_MODULE=tp.settings
+      - LOCAL_SETTINGS_MODULE=tp.settings.docker
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_DB_NAME=drftp
