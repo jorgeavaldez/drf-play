@@ -1,5 +1,5 @@
 FROM python:3
-LABEL author="Jorge Valdez"
+LABEL author="HipStu (SMU Dev Team)"
 
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
 
@@ -15,7 +15,7 @@ RUN apt-get install -y \
   vim
 
 # Project Files and Settings
-ARG PROJECT=drftp
+ARG PROJECT=hipstu_backend
 ARG PROJECT_DIR=/var/app/${PROJECT}
 
 RUN mkdir -p $PROJECT_DIR

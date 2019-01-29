@@ -5,15 +5,15 @@ volumes:
 
 services:
   app:
-    container_name: drftp-api
+    container_name: hipstu_backend
     build:
       context: .
       dockerfile: Dockerfile
-    image: drftp
+    image: hipstu
     links:
       - db
     environment:
-      - DJANGO_SETTINGS_MODULE=tp.settings
+      - DJANGO_SETTINGS_MODULE=hipstu.settings
       - LOCAL_SETTINGS_MODULE=settings.docker
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
@@ -24,7 +24,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/var/app/drftp
+      - .:/var/app/hipstu_backend
     ports:
       - 8000:8000
     networks:
